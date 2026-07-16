@@ -37,7 +37,16 @@ export default function App() {
     setNewName("");
     setNewPrice("");
   };
+function sellProduct(product) {
+  const sale = {
+    id: Date.now(),
+    name: product.name,
+    price: product.price,
+  };
 
+  setSales([sale, ...sales]);
+  setCash(cash + product.price);
+}
   return (
     <div className="container">
       <h1>Danqroş Satış Sistemi</h1>

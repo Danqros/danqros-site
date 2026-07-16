@@ -109,6 +109,24 @@ function sellProduct(product) {
       <button onClick={sell}>Sat</button>
 
       <h2>Satışlar</h2>
+        {sales.length === 0 ? (
+  <p>Hələ satış yoxdur.</p>
+) : (
+  sales.map((sale) => (
+    <div
+      key={sale.id}
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        borderBottom: "1px solid #ddd",
+        padding: "8px 0",
+      }}
+    >
+      <span>{sale.name}</span>
+      <span>{sale.price} ₼</span>
+    </div>
+  ))
+)}
       <ul>
         {sales.map((s, i) => (
           <li key={i}>

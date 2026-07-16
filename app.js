@@ -1,70 +1,40 @@
-import React from "react";
+let products = [];
 
-export default function App() {
-  return (
-    <div style={{
-      maxWidth: "500px",
-      margin: "40px auto",
-      fontFamily: "Arial",
-      padding: "20px"
-    }}>
-        <h1>Danqroş</h1>
+function addProduct() {
+  const name = document.getElementById("name").value;
+  const price = document.getElementById("price").value;
 
-        <button style={{
-          width: "100%",
-          padding: "15px",
-          marginTop: "10px"
-        }}>
-          Məhsullar
-        </button>
+  if (name === "" || price === "") {
+    alert("Bütün xanaları doldurun.");
+    return;
+  }
 
-        <button style={{
-          width: "100%",
-          padding: "15px",
-          marginTop: "10px"
-        }}>
-          Müştərilər
-        </button>
+  products.push({
+    name: name,
+    price: price
+  });
 
-        <button style={{
-          width: "100%",
-          padding: "15px",
-          marginTop: "10px"
-        }}>
-          Satış
-        </button>
+  document.getElementById("name").value = "";
+  document.getElementById("price").value = "";
 
-        <button style={{
-          width: "100%",
-          padding: "15px",
-          marginTop: "10px"
-        }}>
-          Tahsilat
-        </button>
+  renderProducts();
+}
 
-        <button style={{
-          width: "100%",
-          padding: "15px",
-          marginTop: "10px"
-        }}>
-          Ödəniş
-        </button>
+function renderProducts() {
+  const list = document.getElementById("list");
+  list.innerHTML = "";
 
-        <button style={{
-          width: "100%",
-          padding: "15px",
-          marginTop: "10px"
-        }}>
-          Xərclər
-        </button>
+  products.forEach((p, index) => {
+    list.innerHTML += `
+      <li>
+        ${p.name} - ${p.price} ₼
+        <button onclick="deleteProduct(${index})">Sil</button>
+      </li>
+    `;
+  });
+}
 
-        <button style={{
-          width: "100%",
-          padding: "15px",
-          marginTop: "10px"
-        }}>
-          Kassa
-        </button>
-    </div>
-  );
+function deleteProduct(index) {
+  products.splice(index, 1);
+  renderProducts();
 }

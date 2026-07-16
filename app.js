@@ -1,52 +1,21 @@
-let products = JSON.parse(localStorage.getItem("products")) || [];
+document.addEventListener("DOMContentLoaded", () => {
+  const products = [
+    { name: "Məhsul 1", price: 10 },
+    { name: "Məhsul 2", price: 15 },
+    { name: "Məhsul 3", price: 20 }
+  ];
 
-function saveProducts() {
-    localStorage.setItem("products", JSON.stringify(products));
-}
+  const list = document.getElementById("product-list");
 
-function renderProducts() {
-    const tbody = document.getElementById("product-list");
-    tbody.innerHTML = "";
-
-    products.forEach((p, index) => {
-        tbody.innerHTML += `
-        <tr>
-            <td>${p.name}</td>
-            <td>${p.buy}</td>
-            <td>${p.sell}</td>
-            <td><button onclick="deleteProduct(${index})">Sil</button></td>
-        </tr>`;
+  if (list) {
+    products.forEach(product => {
+      const item = document.createElement("div");
+      item.className = "product";
+      item.innerHTML = `
+        <h3>${product.name}</h3>
+        <p>${product.price} ₼</p>
+      `;
+      list.appendChild(item);
     });
-}
-
-function addProduct() {
-    const name = document.getElementById("name").value.trim();
-    const buy = document.getElementById("buy").value;
-    const sell = document.getElementById("sell").value;
-
-    if (!name || !buy || !sell) {
-        alert("Bütün xanaları doldurun.");
-        return;
-    }
-
-    products.push({
-        name,
-        buy,
-        sell
-    });
-
-    saveProducts();
-    renderProducts();
-
-    document.getElementById("name").value = "";
-    document.getElementById("buy").value = "";
-    document.getElementById("sell").value = "";
-}
-
-function deleteProduct(index) {
-    products.splice(index, 1);
-    saveProducts();
-    renderProducts();
-}
-
-renderProducts();
+  }
+});

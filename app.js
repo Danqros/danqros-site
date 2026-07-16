@@ -1,3 +1,4 @@
+alert("app.js yükləndi");
 let currentUser = null;
 
 const users = {

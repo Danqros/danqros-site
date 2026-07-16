@@ -34,80 +34,34 @@ export default function App() {
     <div className="App">
       <h1>Danqroş</h1>
 
-      <div
-        style={{
-          background: "#fff",
-          padding: 20,
-          borderRadius: 12,
-          marginBottom: 20,
-        }}
-      >
-        <input
-          placeholder="Məhsul adı"
-          value={newName}
-          onChange={(e) => setNewName(e.target.value)}
-          style={{
-            width: "100%",
-            padding: 10,
-            marginBottom: 10,
-          }}
-        />
+      <h2>Məhsullar</h2>
 
-        <input
-          placeholder="Qiymət"
-          type="number"
-          value={newPrice}
-          onChange={(e) => setNewPrice(e.target.value)}
-          style={{
-            width: "100%",
-            padding: 10,
-            marginBottom: 10,
-          }}
-        />
+      <input
+        type="text"
+        placeholder="Məhsulun adı"
+        value={newName}
+        onChange={(e) => setNewName(e.target.value)}
+      />
 
-        <button
-          onClick={addProduct}
-          style={{
-            width: "100%",
-            padding: 12,
-            background: "green",
-            color: "#fff",
-            border: "none",
-            borderRadius: 8,
-          }}
-        >
-          Məhsul əlavə et
-        </button>
-      </div>
+      <input
+        type="number"
+        placeholder="Qiymət"
+        value={newPrice}
+        onChange={(e) => setNewPrice(e.target.value)}
+      />
 
-      {products.map((p) => (
-        <div
-          key={p.id}
-          style={{
-            background: "#fff",
-            padding: 20,
-            borderRadius: 12,
-            marginBottom: 15,
-          }}
-        >
-          <h2>{p.name}</h2>
+      <button onClick={addProduct}>Əlavə et</button>
 
-          <h3 style={{ color: "green" }}>{p.price} ₼</h3>
-
-          <button
-            onClick={() => deleteProduct(p.id)}
-            style={{
-              background: "red",
-              color: "#fff",
-              border: "none",
-              padding: 10,
-              borderRadius: 8,
-            }}
-          >
-            Sil
-          </button>
-        </div>
-      ))}
+      <ul>
+        {products.map((product) => (
+          <li key={product.id}>
+            {product.name} — {product.price} ₼
+            <button onClick={() => deleteProduct(product.id)}>
+              Sil
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

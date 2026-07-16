@@ -76,38 +76,12 @@ function sellProduct(product) {
     </button>
   </div>
 ))}
-    <ul>
-  {products.map((product) => (
-    <li key={product.id}>
-      {product.name} — {product.price} ₼
-    </li>
-  ))}
-</ul>
-      <ul>
-        {products.map((p) => (
-          <li key={p.id}>
-            {p.name} — {p.price} ₼
-          </li>
-        ))}
-      </ul>
-
+   
       <hr />
 
       <h2>Satış et</h2>
 
-      <select
-        value={selected}
-        onChange={(e) => setSelected(e.target.value)}
-      >
-        {products.map((p) => (
-          <option key={p.id} value={p.id}>
-            {p.name}
-          </option>
-        ))}
-      </select>
-
-      <button onClick={sell}>Sat</button>
-
+      
       <h2>Satışlar</h2>
         {sales.length === 0 ? (
   <p>Hələ satış yoxdur.</p>
@@ -127,13 +101,7 @@ function sellProduct(product) {
     </div>
   ))
 )}
-      <ul>
-        {sales.map((s, i) => (
-          <li key={i}>
-            {s.name} — {s.price} ₼
-          </li>
-        ))}
-      </ul>
+      
 
       <h2>Kassa: {cash} ₼</h2>
 

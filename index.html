@@ -4,50 +4,67 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Danqroş</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#f4f6fb}
-header{
-background:#2563eb;
-color:#fff;
-padding:20px;
-text-align:center;
-font-size:28px;
-font-weight:bold;
-}
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-gap:15px;
-padding:20px;
-}
-.card{
-background:#fff;
-border-radius:16px;
-padding:35px 20px;
-text-align:center;
-font-size:20px;
-font-weight:bold;
-box-shadow:0 8px 20px rgba(0,0,0,.08);
-cursor:pointer;
-transition:.2s;
-}
-.card:active{
-transform:scale(.97);
-}
-</style>
+
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header>Danqroş</header>
+<header>
+    <h1>DANQROŞ</h1>
+</header>
 
-<div class="grid">
-<div class="card">📦 Məhsullar</div>
-<div class="card">👤 Müştərilər</div>
-<div class="card">🛒 Satış</div>
-<div class="card">🛍️ Alış</div>
-<div class="card">💰 Kassa</div>
-</div>
+<nav>
+    <button onclick="showPage('products')">📦 Məhsullar</button>
+    <button onclick="showPage('customers')">👤 Müştərilər</button>
+    <button onclick="showPage('sales')">🛒 Satış</button>
+    <button onclick="showPage('purchase')">🛍️ Alış</button>
+    <button onclick="showPage('cash')">💰 Kassa</button>
+</nav>
+
+<main>
+
+<section id="products" class="page">
+
+<h2>Məhsullar</h2>
+
+<input id="productName" placeholder="Məhsul adı">
+
+<input id="buyPrice" type="number" placeholder="Alış qiyməti">
+
+<input id="sellPrice" type="number" placeholder="Satış qiyməti">
+
+<button onclick="addProduct()">Əlavə et</button>
+
+<hr>
+
+<div id="productList"></div>
+
+</section>
+
+<section id="customers" class="page" style="display:none;">
+<h2>Müştərilər</h2>
+<p>Hazırlanır...</p>
+</section>
+
+<section id="sales" class="page" style="display:none;">
+<h2>Satış</h2>
+<p>Hazırlanır...</p>
+</section>
+
+<section id="purchase" class="page" style="display:none;">
+<h2>Alış</h2>
+<p>Hazırlanır...</p>
+</section>
+
+<section id="cash" class="page" style="display:none;">
+<h2>Kassa</h2>
+<p>Hazırlanır...</p>
+</section>
+
+</main>
+
+<script src="app.js"></script>
 
 </body>
 </html>

@@ -8,27 +8,28 @@
 </head>
 <body>
 
-<h1>Danqroş Satış Sistemi</h1>
+<div id="login">
+  <h2>Danqroş Giriş</h2>
 
-<div class="card">
-  <h2>Məhsullar</h2>
-<hr>
+  <input id="username" placeholder="İstifadəçi adı"><br><br>
 
-<h2>Satış et</h2>
+  <input id="password" type="password" placeholder="Şifrə"><br><br>
 
-<select id="productSelect"></select>
-<input type="number" id="saleQty" placeholder="Say" value="1">
-<button onclick="sellProduct()">Sat</button>
+  <button onclick="login()">Daxil ol</button>
+</div>
 
-<h3>Satışlar</h3>
-<ul id="salesList"></ul>
+<div id="panel" style="display:none;">
+  <h2 id="welcome"></h2>
 
-<h3>Kassa: <span id="cash">0</span> ₼</h3>
-  <input id="name" placeholder="Məhsul adı">
-  <input id="price" type="number" placeholder="Qiymət">
+  <h3>Məhsul əlavə et</h3>
+
+  <input id="productName" placeholder="Məhsul adı">
+  <input id="productPrice" type="number" placeholder="Qiymət">
+
   <button onclick="addProduct()">Əlavə et</button>
 
-  <ul id="list"></ul>
+  <h3>Məhsullar</h3>
+  <ul id="productList"></ul>
 </div>
 
 <script src="app.js"></script>

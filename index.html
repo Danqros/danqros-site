@@ -5,66 +5,199 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Danqroş</title>
 
-<link rel="stylesheet" href="style.css">
-</head>
+<style>
+body{
+    margin:0;
+    padding:20px;
+    background:#f4f4f4;
+    font-family:Arial,sans-serif;
+}
 
+h1{
+    text-align:center;
+    color:#0d6efd;
+}
+
+.card{
+    background:#fff;
+    padding:15px;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-top:8px;
+    margin-bottom:8px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    box-sizing:border-box;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#0d6efd;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button:hover{
+    background:#0b5ed7;
+    cursor:pointer;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    border-bottom:1px solid #ddd;
+    padding:10px;
+    text-align:center;
+}
+
+.delete{
+    background:red;
+    padding:6px 10px;
+    border:none;
+    color:white;
+    border-radius:6px;
+}
+</style>
+
+</head>
 <body>
 
-<header>
-    <h1>DANQROŞ</h1>
-</header>
+<h1>Danqroş</h1>
 
-<nav>
-    <button onclick="showPage('products')">📦 Məhsullar</button>
-    <button onclick="showPage('customers')">👤 Müştərilər</button>
-    <button onclick="showPage('sales')">🛒 Satış</button>
-    <button onclick="showPage('purchase')">🛍️ Alış</button>
-    <button onclick="showPage('cash')">💰 Kassa</button>
-</nav>
+<div class="card">
 
-<main>
+<h2>Məhsul əlavə et</h2>
 
-<section id="products" class="page">
+<input id="name" placeholder="Məhsul adı">
 
-<h2>Məhsullar</h2>
+<input id="buy" type="number" placeholder="Alış qiyməti">
 
-<input id="productName" placeholder="Məhsul adı">
-
-<input id="buyPrice" type="number" placeholder="Alış qiyməti">
-
-<input id="sellPrice" type="number" placeholder="Satış qiyməti">
+<input id="sell" type="number" placeholder="Satış qiyməti">
 
 <button onclick="addProduct()">Əlavə et</button>
 
-<hr>
+</div>
 
-<div id="productList"></div>
+<div class="card">
 
-</section>
+<h2>Məhsullar</h2>
 
-<section id="customers" class="page" style="display:none;">
-<h2>Müştərilər</h2>
-<p>Hazırlanır...</p>
-</section>
+<table>
 
-<section id="sales" class="page" style="display:none;">
-<h2>Satış</h2>
-<p>Hazırlanır...</p>
-</section>
+<thead>
 
-<section id="purchase" class="page" style="display:none;">
-<h2>Alış</h2>
-<p>Hazırlanır...</p>
-</section>
+<tr>
 
-<section id="cash" class="page" style="display:none;">
-<h2>Kassa</h2>
-<p>Hazırlanır...</p>
-</section>
+<th>Ad</th>
 
-</main>
+<th>Alış</th>
 
-<script src="app.js"></script>
+<th>Satış</th>
+
+<th>Sil</th>
+
+</tr>
+
+</thead>
+
+<tbody id="list"></tbody>
+
+</table>
+
+</div>
+
+<script>
+
+let products=JSON.parse(localStorage.getItem("products"))||[];
+
+function save(){
+localStorage.setItem("products",JSON.stringify(products));
+}
+
+function render(){
+
+let html="";
+
+products.forEach((p,i)=>{
+
+html+=`
+<tr>
+
+<td>${p.name}</td>
+
+<td>${p.buy}</td>
+
+<td>${p.sell}</td>
+
+<td>
+<button class="delete" onclick="removeProduct(${i})">
+Sil
+</button>
+</td>
+
+</tr>
+`;
+
+});
+
+document.getElementById("list").innerHTML=html;
+
+}
+
+function addProduct(){
+
+let name=document.getElementById("name").value;
+
+let buy=document.getElementById("buy").value;
+
+let sell=document.getElementById("sell").value;
+
+if(name==""||buy==""||sell==""){
+alert("Bütün xanaları doldurun");
+return;
+}
+
+products.push({
+name:name,
+buy:buy,
+sell:sell
+});
+
+save();
+
+render();
+
+document.getElementById("name").value="";
+document.getElementById("buy").value="";
+document.getElementById("sell").value="";
+
+}
+
+function removeProduct(i){
+
+products.splice(i,1);
+
+save();
+
+render();
+
+}
+
+render();
+
+</script>
 
 </body>
 </html>

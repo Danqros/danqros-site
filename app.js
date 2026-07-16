@@ -1,67 +1,70 @@
-import React, { useState } from "react";
-import "./App.css";
+import React from "react";
 
 export default function App() {
-  const [products, setProducts] = useState([
-    { id: 1, name: "Yorğan 200x220", price: 24 },
-    { id: 2, name: "Yastıq 50x70", price: 12 },
-  ]);
-
-  const [newName, setNewName] = useState("");
-  const [newPrice, setNewPrice] = useState("");
-
-  const addProduct = () => {
-    if (!newName || !newPrice) return;
-
-    setProducts([
-      ...products,
-      {
-        id: Date.now(),
-        name: newName,
-        price: Number(newPrice),
-      },
-    ]);
-
-    setNewName("");
-    setNewPrice("");
-  };
-
-  const deleteProduct = (id) => {
-    setProducts(products.filter((p) => p.id !== id));
-  };
-
   return (
-    <div className="App">
-      <h1>Danqroş</h1>
+    <div style={{
+      maxWidth: "500px",
+      margin: "40px auto",
+      fontFamily: "Arial",
+      padding: "20px"
+    }}>
+        <h1>Danqroş</h1>
 
-      <h2>Məhsullar</h2>
+        <button style={{
+          width: "100%",
+          padding: "15px",
+          marginTop: "10px"
+        }}>
+          Məhsullar
+        </button>
 
-      <input
-        type="text"
-        placeholder="Məhsulun adı"
-        value={newName}
-        onChange={(e) => setNewName(e.target.value)}
-      />
+        <button style={{
+          width: "100%",
+          padding: "15px",
+          marginTop: "10px"
+        }}>
+          Müştərilər
+        </button>
 
-      <input
-        type="number"
-        placeholder="Qiymət"
-        value={newPrice}
-        onChange={(e) => setNewPrice(e.target.value)}
-      />
+        <button style={{
+          width: "100%",
+          padding: "15px",
+          marginTop: "10px"
+        }}>
+          Satış
+        </button>
 
-      <button onClick={addProduct}>Əlavə et</button>
+        <button style={{
+          width: "100%",
+          padding: "15px",
+          marginTop: "10px"
+        }}>
+          Tahsilat
+        </button>
 
-      <ul>
-        {products.map((product) => (
-          <li key={product.id}>
-            {product.name} — {product.price} ₼
-            <button onClick={() => deleteProduct(product.id)}>
-              Sil
-            </button>
-          </li>
-        ))}
-      </ul>
+        <button style={{
+          width: "100%",
+          padding: "15px",
+          marginTop: "10px"
+        }}>
+          Ödəniş
+        </button>
+
+        <button style={{
+          width: "100%",
+          padding: "15px",
+          marginTop: "10px"
+        }}>
+          Xərclər
+        </button>
+
+        <button style={{
+          width: "100%",
+          padding: "15px",
+          marginTop: "10px"
+        }}>
+          Kassa
+        </button>
     </div>
   );
 }

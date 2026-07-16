@@ -1,11 +1,3 @@
-function showPage(id) {
-    document.querySelectorAll(".page").forEach(page => {
-        page.style.display = "none";
-    });
-
-    document.getElementById(id).style.display = "block";
-}
-
 let products = JSON.parse(localStorage.getItem("products")) || [];
 
 function saveProducts() {
@@ -13,61 +5,48 @@ function saveProducts() {
 }
 
 function renderProducts() {
-    const list = document.getElementById("productList");
-    list.innerHTML = "";
+    const tbody = document.getElementById("product-list");
+    tbody.innerHTML = "";
 
     products.forEach((p, index) => {
-        list.innerHTML += `
-            <div class="card">
-                <b>${p.name}</b><br>
-                Alış: ${p.buy}<br>
-                Satış: ${p.sell}<br><br>
-
-                <button onclick="deleteProduct(${index})">
-                    Sil
-                </button>
-            </div>
-        `;
+        tbody.innerHTML += `
+        <tr>
+            <td>${p.name}</td>
+            <td>${p.buy}</td>
+            <td>${p.sell}</td>
+            <td><button onclick="deleteProduct(${index})">Sil</button></td>
+        </tr>`;
     });
 }
 
 function addProduct() {
+    const name = document.getElementById("name").value.trim();
+    const buy = document.getElementById("buy").value;
+    const sell = document.getElementById("sell").value;
 
-    const name = document.getElementById("productName").value.trim();
-    const buy = document.getElementById("buyPrice").value;
-    const sell = document.getElementById("sellPrice").value;
-
-    if(name==""){
-        alert("Məhsul adı boş ola bilməz.");
+    if (!name || !buy || !sell) {
+        alert("Bütün xanaları doldurun.");
         return;
     }
 
     products.push({
-        name:name,
-        buy:buy,
-        sell:sell
+        name,
+        buy,
+        sell
     });
 
     saveProducts();
     renderProducts();
 
-    document.getElementById("productName").value="";
-    document.getElementById("buyPrice").value="";
-    document.getElementById("sellPrice").value="";
+    document.getElementById("name").value = "";
+    document.getElementById("buy").value = "";
+    document.getElementById("sell").value = "";
 }
 
-function deleteProduct(index){
-
-    if(confirm("Silinsin?")){
-
-        products.splice(index,1);
-
-        saveProducts();
-
-        renderProducts();
-
-    }
-
+function deleteProduct(index) {
+    products.splice(index, 1);
+    saveProducts();
+    renderProducts();
 }
 
 renderProducts();

@@ -43,6 +43,30 @@ export default function App() {
       <h1>Danqroş Satış Sistemi</h1>
 
       <h2>Məhsullar</h2>
+    {products.map((product) => (
+  <div
+    key={product.id}
+    style={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      border: "1px solid #ddd",
+      padding: "10px",
+      marginBottom: "10px",
+      borderRadius: "8px",
+    }}
+  >
+    <div>
+      <b>{product.name}</b>
+      <br />
+      {product.price} ₼
+    </div>
+
+    <button onClick={() => sellProduct(product)}>
+      Sat
+    </button>
+  </div>
+))}
     <ul>
   {products.map((product) => (
     <li key={product.id}>

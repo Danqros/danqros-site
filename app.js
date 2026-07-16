@@ -43,6 +43,13 @@ export default function App() {
       <h1>Danqroş Satış Sistemi</h1>
 
       <h2>Məhsullar</h2>
+    <ul>
+  {products.map((product) => (
+    <li key={product.id}>
+      {product.name} — {product.price} ₼
+    </li>
+  ))}
+</ul>
       <ul>
         {products.map((p) => (
           <li key={p.id}>
